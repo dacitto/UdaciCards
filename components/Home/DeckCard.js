@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
-
+import { FontAwesome5 } from "@expo/vector-icons";
 const DeckCard = ({ title, numberOfCards }) => {
   return (
     <View style={styles.card}>
