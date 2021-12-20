@@ -1,10 +1,18 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import DeckCard from "./DeckCard";
+import { useSelector } from "react-redux";
 export default function Home() {
+  const decks = useSelector((state) => state.decks);
   return (
-    <View style={styles.container}>
-      <DeckCard title="react" numberOfCards={2}></DeckCard>
-    </View>
+    <ScrollView style={styles.container}>
+      {decks.map((deck, index) => (
+        <DeckCard
+          key={index}
+          title={deck.title}
+          numberOfCards={deck.questions.length}
+        />
+      ))}
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
