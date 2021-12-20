@@ -8,11 +8,10 @@ import {
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
-  Touchable,
 } from "react-native";
 import { addDeck } from "../../redux/decksSlice";
 import { useDispatch } from "react-redux";
-const AddDeck = () => {
+const AddDeck = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   return (
@@ -21,6 +20,7 @@ const AddDeck = () => {
         <Text>What's the Title of your Deck?</Text>
         <TextInput
           style={styles.input}
+          value={title}
           onChangeText={(title) => setTitle(title)}
           placeholder="New deck Title"
         />
@@ -30,6 +30,8 @@ const AddDeck = () => {
               dispatch(
                 addDeck({ id: Date.now(), title: title.trim(), questions: [] })
               );
+              setTitle("");
+              navigation.goBack();
             } else {
               Alert.alert(
                 "Deck Title is empty!",
