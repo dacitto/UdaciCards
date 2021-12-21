@@ -63,7 +63,34 @@ const Quiz = ({ route, navigation }) => {
         </View>
       )}
       {!(index < questionsNumber) && questionsNumber > 0 && (
-        <Text>Some Logic</Text>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.title}>You Have Scored</Text>
+            <Text style={[styles.title, styles.green]}>
+              {correct} out of {questionsNumber}
+            </Text>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                setIncorrect(0);
+                setIndex(0);
+                setShowAnswer(false);
+              }}
+            >
+              <Text style={styles.buttonText}>Restart Quiz</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
+            >
+              <Text style={styles.buttonText}>Back To Home</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       )}
     </>
   );
@@ -72,7 +99,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    //alignItems: "center",
     justifyContent: "space-between",
   },
   title: {
@@ -94,12 +120,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
-  buttonDelete: {
-    textAlign: "center",
-    color: "red",
-    fontSize: 20,
-    marginBottom: 25,
-  },
   question: {
     fontSize: 20,
     marginBottom: 15,
@@ -112,6 +132,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     lineHeight: 25,
     borderRadius: 10,
+  },
+  green: {
+    color: "green",
   },
 });
 
