@@ -1,7 +1,11 @@
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import DeckCard from "./DeckCard";
 import { useSelector } from "react-redux";
-export default function Home() {
+
+export default function Home({ navigation }) {
+  const deckDetails = (item) => {
+    navigation.navigate("DeckDetails", { deck: item });
+  };
   const decks = useSelector((state) => state.decks);
   return (
     <View style={styles.container}>
@@ -10,10 +14,12 @@ export default function Home() {
           keyExtractor={(deck) => deck.id}
           data={decks}
           renderItem={({ item }) => (
-            <DeckCard
-              title={item.title}
-              numberOfCards={item.questions.length}
-            />
+            <TouchableOpacity onPress={() => deckDetails(item)}>
+              <DeckCard
+                title={item.title}
+                numberOfCards={item.questions.length}
+              />
+            </TouchableOpacity>
           )}
         />
       )}
@@ -24,7 +30,5 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
   },
 });

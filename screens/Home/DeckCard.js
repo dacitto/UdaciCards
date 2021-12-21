@@ -1,13 +1,11 @@
 import { Text, View, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-const DeckCard = ({ title, numberOfCards }) => {
-  return (
-    <View style={styles.card}>
-      <Text style={styles.text}>{title}</Text>
-      <Text style={styles.text}>{numberOfCards} cards</Text>
-    </View>
-  );
-};
+
+const DeckCard = ({ title, numberOfCards }) => (
+  <View style={styles.card}>
+    <Text style={styles.text}>{title}</Text>
+    <Text style={styles.text}>{numberOfCards} cards</Text>
+  </View>
+);
 const styles = StyleSheet.create({
   card: {
     padding: 10,
