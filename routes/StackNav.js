@@ -4,6 +4,7 @@ import "react-native-gesture-handler";
 import DeckDetails from "../screens/DeckDetails";
 import TabNav from "./TabNav";
 import AddCard from "../screens/AddCard";
+import Quiz from "../screens/Quiz";
 const Stack = createStackNavigator();
 const StackNav = () => {
   return (
@@ -31,6 +32,11 @@ const StackNav = () => {
           name="AddCard"
           component={AddCard}
           options={{ title: "Add New Card" }}
+        />
+        <Stack.Screen
+          name="Quiz"
+          component={Quiz}
+          options={{ title: "Quiz" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,10 +1,10 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteDeck } from "../../redux/decksSlice";
 const DeckDetails = ({ route, navigation }) => {
   const deckID = route.params.deck.id;
-
   const deck = useSelector((state) => state.decks[deckID]);
-  //console.log(state);
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{deck.title}</Text>
@@ -20,10 +20,18 @@ const DeckDetails = ({ route, navigation }) => {
         >
           <Text style={styles.buttonText}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Quiz", { deckID: deckID })}
+        >
           <Text style={styles.buttonText}>Start Quiz</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(deleteDeck({ id: deckID }));
+            navigation.goBack();
+          }}
+        >
           <Text style={styles.buttonDelete}>Delete Deck</Text>
         </TouchableOpacity>
       </View>

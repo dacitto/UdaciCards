@@ -37,16 +37,16 @@ export const decksSlice = createSlice({
       state[action.payload.id] = action.payload;
     },
     addQuestion: (state, action) => {
-      console.log("action.payload------->");
-      console.log(action.payload);
-      console.log("state");
-      console.log(state);
       const { deckID, ...rest } = action.payload;
       state[deckID].questions.push(rest);
+    },
+    deleteDeck: (state, action) => {
+      console.log("deleted-->");
+      console.log(action.payload.id);
+      //delete state[action.payload.id];
     },
   },
 });
 
-export const { addDeck } = decksSlice.actions;
-export const { addQuestion } = decksSlice.actions;
+export const { addDeck, addQuestion, deleteDeck } = decksSlice.actions;
 export default decksSlice.reducer;
