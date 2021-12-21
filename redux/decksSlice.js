@@ -41,7 +41,8 @@ export const decksSlice = createSlice({
       console.log(action.payload);
       console.log("state");
       console.log(state);
-      // state[deckId].questions.push(action.payload);
+      const { deckID, ...rest } = action.payload;
+      state[deckID].questions.push(rest);
     },
   },
 });

@@ -1,8 +1,10 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
 const DeckDetails = ({ route, navigation }) => {
-  const deck = route.params.deck;
-  console.log(route.params);
+  const deckID = route.params.deck.id;
 
+  const deck = useSelector((state) => state.decks[deckID]);
+  //console.log(state);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{deck.title}</Text>
@@ -14,7 +16,7 @@ const DeckDetails = ({ route, navigation }) => {
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("AddCard")}
+          onPress={() => navigation.navigate("AddCard", { deckID: deckID })}
         >
           <Text style={styles.buttonText}>Add Card</Text>
         </TouchableOpacity>
