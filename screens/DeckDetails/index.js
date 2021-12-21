@@ -1,6 +1,8 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 const DeckDetails = ({ route, navigation }) => {
   const deck = route.params.deck;
+  console.log(route.params);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{deck.title}</Text>

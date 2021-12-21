@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 export const decksSlice = createSlice({
   name: "decks",
-  initialState: [
-    {
+  initialState: {
+    1654: {
       id: 1654,
       title: "React",
       questions: [
@@ -18,7 +18,7 @@ export const decksSlice = createSlice({
         },
       ],
     },
-    {
+    9568: {
       id: 9568,
       title: "JavaScript",
       questions: [
@@ -30,15 +30,22 @@ export const decksSlice = createSlice({
         },
       ],
     },
-  ],
+  },
 
   reducers: {
     addDeck: (state, action) => {
-      state.push(action.payload);
+      state[action.payload.id] = action.payload;
+    },
+    addQuestion: (state, action) => {
+      console.log("action.payload------->");
+      console.log(action.payload);
+      console.log("state");
+      console.log(state);
+      // state[deckId].questions.push(action.payload);
     },
   },
 });
 
 export const { addDeck } = decksSlice.actions;
-
+export const { addQuestion } = decksSlice.actions;
 export default decksSlice.reducer;

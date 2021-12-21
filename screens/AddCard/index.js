@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { addDeck } from "../../redux/decksSlice";
+import { addQuestion } from "../../redux/decksSlice";
 import { useDispatch } from "react-redux";
 const AddCard = ({ navigation }) => {
   const [question, setQuestion] = useState("");
@@ -33,9 +33,13 @@ const AddCard = ({ navigation }) => {
         <Button
           onPress={() => {
             if (question.trim() !== "" && answer.trim() !== "") {
-              // dispatch(
-              //   addDeck({ id: Date.now(), title: title.trim(), questions: [] })
-              // );
+              dispatch(
+                addQuestion(9568, {
+                  id: Date.now(),
+                  qustion: question.trim(),
+                  answer: answer.trim(),
+                })
+              );
               // setTitle("");
               navigation.goBack();
             } else {

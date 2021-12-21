@@ -11,13 +11,13 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       {decks && (
         <FlatList
-          keyExtractor={(deck) => deck.id}
-          data={decks}
+          keyExtractor={(item) => item}
+          data={Object.keys(decks)}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => deckDetails(item)}>
+            <TouchableOpacity onPress={() => deckDetails(decks[item])}>
               <DeckCard
-                title={item.title}
-                numberOfCards={item.questions.length}
+                title={decks[item].title}
+                numberOfCards={decks[item].questions.length}
               />
             </TouchableOpacity>
           )}
