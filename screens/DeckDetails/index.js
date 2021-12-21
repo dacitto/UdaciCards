@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-const DeckDetails = ({ route }) => {
+const DeckDetails = ({ route, navigation }) => {
   const deck = route.params.deck;
   return (
     <View style={styles.container}>
@@ -10,7 +10,10 @@ const DeckDetails = ({ route }) => {
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("AddCard")}
+        >
           <Text style={styles.buttonText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
