@@ -3,39 +3,42 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteDeck } from "../../redux/decksSlice";
 const DeckDetails = ({ route, navigation }) => {
   const deckID = route.params.deck.id;
-  const deck = useSelector((state) => state.decks[deckID]);
+  const deck = useSelector((state) => state.decks.decks[deckID]);
   const dispatch = useDispatch();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{deck.title}</Text>
-      <View>
-        <Text style={styles.title}>
-          {deck.questions.length} Card{deck.questions.length > 1 && "s"}
-        </Text>
+    deck != {} &&
+    deck && (
+      <View style={styles.container}>
+        <Text style={styles.title}>{deck.title}</Text>
+        <View>
+          <Text style={styles.title}>
+            {deck.questions.length} Card{deck.questions.length > 1 && "s"}
+          </Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("AddCard", { deckID: deckID })}
+          >
+            <Text style={styles.buttonText}>Add Card</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("Quiz", { deckID: deckID })}
+          >
+            <Text style={styles.buttonText}>Start Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(deleteDeck({ id: deckID }));
+              navigation.goBack();
+            }}
+          >
+            <Text style={styles.buttonDelete}>Delete Deck</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("AddCard", { deckID: deckID })}
-        >
-          <Text style={styles.buttonText}>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Quiz", { deckID: deckID })}
-        >
-          <Text style={styles.buttonText}>Start Quiz</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(deleteDeck({ id: deckID }));
-            navigation.goBack();
-          }}
-        >
-          <Text style={styles.buttonDelete}>Delete Deck</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    )
   );
 };
 const styles = StyleSheet.create({
