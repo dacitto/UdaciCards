@@ -38,24 +38,24 @@ const Quiz = ({ route, navigation }) => {
             {showAnswer && (
               <>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={[styles.button, styles.correct]}
                   onPress={() => {
                     setCorrect(correct + 1);
                     setIndex(index + 1);
                     setShowAnswer(false);
                   }}
                 >
-                  <Text style={styles.buttonText}>Correct</Text>
+                  <Text style={[styles.buttonText]}>Correct</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={[styles.button, styles.incorrect]}
                   onPress={() => {
                     setIncorrect(incorrect + 1);
                     setIndex(index + 1);
                     setShowAnswer(false);
                   }}
                 >
-                  <Text style={styles.buttonText}>Wrong</Text>
+                  <Text style={[styles.buttonText]}>Incorrect</Text>
                 </TouchableOpacity>
               </>
             )}
@@ -113,12 +113,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     textAlign: "center",
-    backgroundColor: "gold",
+    backgroundColor: "#444",
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 24,
     textAlign: "center",
     fontWeight: "bold",
+    color: "#eee",
+    backgroundColor: "transparent",
   },
   question: {
     fontSize: 20,
@@ -135,6 +137,12 @@ const styles = StyleSheet.create({
   },
   green: {
     color: "green",
+  },
+  correct: {
+    backgroundColor: "#5C985C",
+  },
+  incorrect: {
+    backgroundColor: "#ff5252",
   },
 });
 
