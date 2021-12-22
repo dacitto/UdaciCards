@@ -2,27 +2,19 @@ import { useEffect } from "react";
 import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import DeckCard from "./DeckCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getDecks } from "../../api";
-import { initData } from "../../redux/decksSlice";
+import { getData } from "../../redux/decksSlice";
 export default function Home({ navigation }) {
   const deckDetails = (item) => {
     navigation.navigate("DeckDetails", { deck: item });
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    async () => {
-      console.log("useEffect");
-      dispatch(initData(await getDecks()));
-    };
-  }, []);
-
-  console.log("getDecks()");
-  getDecks().then((result) => console.log(result));
-
-  const decks = useSelector((state) => state.decks);
+    dispatch(getData());
+  }, [dispatch]);
+  const { decks } = useSelector((state) => state.decks);
   return (
     <View style={styles.container}>
-      {decks !== {} && (
+      {decks && (
         <FlatList
           keyExtractor={(item) => item}
           data={Object.keys(decks)}
