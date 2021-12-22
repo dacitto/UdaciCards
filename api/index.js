@@ -39,14 +39,13 @@ export async function saveCard(card) {
   try {
     const { deckID, ...rest } = card;
     const deck = await getDeck(deckID);
-    await AsyncStorage.mergeItem(
-      DECKS_KEY,
-      JSON.stringify({
-        [deckID]: {
-          // questions: deck.deck.questions.push(rest),
-        },
-      })
-    );
+    getDecks().then((decks) => {
+      decks[deckID] = {
+        ...decks[deckID],
+        questions: [...decks[deckID].questions, card],
+      };
+      AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
+    });
   } catch (err) {
     console.log(err);
   }
