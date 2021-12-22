@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { addQuestion } from "../../redux/decksSlice";
 import { useDispatch } from "react-redux";
+import { saveCard } from "../../api";
 const AddCard = ({ route, navigation }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -35,14 +36,15 @@ const AddCard = ({ route, navigation }) => {
         <Button
           onPress={() => {
             if (question.trim() !== "" && answer.trim() !== "") {
-              dispatch(
-                addQuestion({
-                  deckID: deckID,
-                  id: Date.now(),
-                  question: question.trim(),
-                  answer: answer.trim(),
-                })
-              );
+              const cardId = Date.now();
+              const card = {
+                deckID: deckID,
+                id: cardId,
+                question: question.trim(),
+                answer: answer.trim(),
+              };
+              saveCard(card);
+              dispatch(addQuestion(card));
               // setTitle("");
               navigation.goBack();
             } else {
