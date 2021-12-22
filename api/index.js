@@ -29,7 +29,7 @@ export async function saveDeck(deck) {
 export async function getDeck(id) {
   try {
     const storeResults = await AsyncStorage.getItem(DECKS_KEY);
-    return await JSON.parse(storeResults[id]);
+    return JSON.parse(storeResults)[id];
   } catch (err) {
     console.log(err);
   }
@@ -39,14 +39,11 @@ export async function saveCard(card) {
   try {
     const { deckID, ...rest } = card;
     const deck = await getDeck(deckID);
-    console.log("*************");
-    console.log(await deck);
-    console.log("*************");
     await AsyncStorage.mergeItem(
       DECKS_KEY,
       JSON.stringify({
         [deckID]: {
-          questions: deck.questions.push(rest),
+          // questions: deck.deck.questions.push(rest),
         },
       })
     );
