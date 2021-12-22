@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { saveDeck } from "../../api";
 import {
   Text,
   View,
@@ -27,9 +28,10 @@ const AddDeck = ({ navigation }) => {
         <Button
           onPress={() => {
             if (title.trim() !== "") {
-              dispatch(
-                addDeck({ id: Date.now(), title: title.trim(), questions: [] })
-              );
+              const id = Date.now();
+              const newDeck = { id: id, title: title.trim(), questions: [] };
+              saveDeck(newDeck);
+              dispatch(addDeck(newDeck));
               setTitle("");
               navigation.goBack();
             } else {
@@ -40,7 +42,7 @@ const AddDeck = ({ navigation }) => {
               );
             }
           }}
-          title="Create a deck"
+          title="Create Deck"
           style={styles.button}
           accessibilityLabel="Add a new deck"
         />
