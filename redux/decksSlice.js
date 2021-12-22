@@ -1,7 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getDecks } from "../api";
 
+export const getData = createAsyncThunk(
+  "deck/getData",
+  async (dispatch, getState) => {
+    return await getDecks();
+  }
+);
 export const decksSlice = createSlice({
-  name: "decks",
+  name: "deck",
   initialState: {},
   // {
   //   1654: {
@@ -33,17 +40,25 @@ export const decksSlice = createSlice({
   //     ],
   //   },
   // },
-
+  extraReducers: {
+    [getData.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [getData.fulfilled]: (state, action) => {
+      state.status = "success";
+      state.decks = action.payload;
+    },
+    [getData.rejected]: (state, action) => {
+      state.status = "failed";
+    },
+  },
   reducers: {
     addDeck: (state, action) => {
-      state[action.payload.id] = action.payload;
+      state.decks[action.payload.id] = action.payload;
     },
     addQuestion: (state, action) => {
       const { deckID, ...rest } = action.payload;
-      state[deckID].questions.push(rest);
-    },
-    initData: (state, action) => {
-      state = action.payload;
+      state.decks[deckID].questions.push(rest);
     },
     deleteDeck: (state, action) => {
       console.log("deleted-->");
