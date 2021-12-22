@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import NoCards from "./NoCards";
 const Quiz = ({ route, navigation }) => {
   const deckID = route.params.deckID;
-  const questions = useSelector((state) => state.decks[deckID].questions);
+  const questions = useSelector((state) => state.decks.decks[deckID].questions);
   const [index, setIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [correct, setCorrect] = useState(0);
@@ -75,6 +75,7 @@ const Quiz = ({ route, navigation }) => {
               style={styles.button}
               onPress={() => {
                 setIncorrect(0);
+                setCorrect(0);
                 setIndex(0);
                 setShowAnswer(false);
               }}
