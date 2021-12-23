@@ -1,17 +1,15 @@
-> Why do I have a folder named ".expo" in my project?
+# UdaciCards 
 
-The ".expo" folder is created when an Expo project is started using "expo start" command.
+UdaciCards is the third project for Udacity Nanodegree program
 
-> What does the "packager-info.json" file contain?
+# Project Overview
 
-The "packager-info.json" file contains port numbers and process PIDs that are used to serve the application to the mobile device/simulator.
+UdaciCard is a mobile application (Android) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-> What does the "settings.json" file contain?
+# Why this project?
+This project encompasses the fundamental aspects of building a native application including handling infinite lists, routing, and user input. By building this project, you will gain an understanding of how to use React Native to build an iOS and Android application.
 
-The "settings.json" file contains the server configuration that is used to serve the application manifest.
+## Tests 
+The app tested in Realme C25s Android device and Android emulator (android 11).
 
-> Should I commit the ".expo" folder?
-
-No, you should not share the ".expo" folder. It does not contain any information that is relevant for other developers working on the project, it is specific to your machine.
-
-Upon project creation, the ".expo" folder is already added to your ".gitignore" file.
+# Preview
