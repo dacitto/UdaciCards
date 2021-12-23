@@ -27,10 +27,11 @@ The app tested in Realme C25s Android device and Android emulator (android 11).
 
 # Technologies used in project
 
-- React Native
-- Expo
-- Redux
- - redux toolik
+- [React Native](https://reactnative.dev/).
+- [Expo](https://expo.dev/).
+- [Redux](https://redux.js.org/)
+- [Redux toolik](https://redux-toolkit.js.org/)
+- [React Navigation](https://reactnavigation.org/)
 
 ## To run the app you need to:
 
@@ -60,4 +61,6 @@ open the project directory with cmd, then you can run the following commands:
 
 or simply you can link your device by USB (you have to enable usb debugging) 
 
-  
+### Credits 
+- [Udacity](https://github.com/udacity).
+- [@tylermcginnis](https://github.com/tylermcginnis).
