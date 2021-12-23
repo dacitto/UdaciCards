@@ -69,6 +69,9 @@ const Quiz = ({ route, navigation }) => {
             <Text style={[styles.title, styles.green]}>
               {correct} out of {questionsNumber}
             </Text>
+            <Text style={[styles.percentage, styles.green]}>
+              {Math.floor((correct * 100) / questionsNumber)}% Correct
+            </Text>
           </View>
           <View>
             <TouchableOpacity
@@ -144,6 +147,11 @@ const styles = StyleSheet.create({
   },
   incorrect: {
     backgroundColor: "#ff5252",
+  },
+  percentage: {
+    fontSize: 48,
+    textAlign: "center",
+    marginVertical: 20,
   },
 });
 
