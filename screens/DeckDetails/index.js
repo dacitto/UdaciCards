@@ -30,11 +30,11 @@ const DeckDetails = ({ route, navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              dispatch(deleteDeck({ id: deckID }));
+              //dispatch(deleteDeck({ id: deckID }));
               navigation.goBack();
             }}
           >
-            <Text style={styles.buttonDelete}>Delete Deck</Text>
+            <Text style={styles.buttonDelete}>Back to Home</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   buttonDelete: {
     textAlign: "center",
-    color: "red",
+    color: "#333",
     fontSize: 20,
     marginBottom: 25,
   },

@@ -3,12 +3,14 @@ import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import DeckCard from "./DeckCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../../redux/decksSlice";
+import { setNotification } from "../../api";
 export default function Home({ navigation }) {
   const deckDetails = (item) => {
     navigation.navigate("DeckDetails", { deck: item });
   };
   const dispatch = useDispatch();
   useEffect(() => {
+    setNotification();
     dispatch(getData());
   }, [dispatch]);
   const { decks } = useSelector((state) => state.decks);
